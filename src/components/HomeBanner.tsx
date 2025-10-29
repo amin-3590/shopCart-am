@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Title from "./ui/text";
 import Image from "next/image";
 import { banner_1 } from "../../public/images";
+import { Title } from "./ui/text";
 
 export default function HomeBanner() {
     return (
