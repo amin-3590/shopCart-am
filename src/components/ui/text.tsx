@@ -8,7 +8,7 @@ function Title({ children, className }: { children: React.ReactNode, className?:
 
 function SubTitle({ children, className }: { children: React.ReactNode, className?: string }) {
     return (
-        <h2 className={cn("font-semibold text-gray-900 font-sans ", className)}>{children}</h2>
+        <h2 className={cn("font-bold text-gray-900 font-sans ", className)}>{children}</h2>
     );
 }
 

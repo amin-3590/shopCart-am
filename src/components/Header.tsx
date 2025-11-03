@@ -12,7 +12,7 @@ import SighIn from "./SighIn";
 
 export default function Header() {
     return (
-        <header className="bg-white py-4">
+        <header className="py-4 sticky z-50 top-0 bg-white/70 backdrop-blur-md">
             <Container className="flex items-center justify-between text-lightColor">
                 <div className="flex justify-start items-center gap-3">
                     <MobileMenu />

@@ -21,7 +21,7 @@ export default function Footer() {
                             style and comfort to elevate your living spaces.
                         </SubText>
                         <SocialMedia
-                            className="text-darkColor/60"
+                            className="text-darkColor/60 pl-0"
                             iconClassName="border-darkColor/60 hover:border-shop_light_green hover:text-shop_light_green"
                             tooltipClassName="bg-darkColor text-white"
                         />
