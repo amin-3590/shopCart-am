@@ -9,6 +9,7 @@ import { getCategories } from "@/sanity/queries";
 export default async function Home() {
   const categories = await getCategories(6)
 
+
   return (
     <Container>
       <HomeBanner />
@@ -20,6 +21,7 @@ export default async function Home() {
       <HomeCategories categories={categories} />
       <ShopByBrands />
       <LatestBlog />
+
     </Container>
   );
 }

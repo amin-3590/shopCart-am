@@ -14,16 +14,18 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="text-sm border-[1px] border-dark-blue/20 rounded-md bg-white group">
             <div className="relative group overflow-hidden bg-shop_light_bg">
                 {product.images && (
-                    <Image
-                        src={urlFor(product.images[0]).url()}
-                        alt="ProductImage"
-                        width={700}
-                        height={700}
-                        unoptimized
-                        priority
-                        className={`w-full h-64 object-contain overflow-hidden transition-transform bg-shop_light_bg duration-500 
+                    <Link href={`/product/${product.slug?.current}`}>
+                        <Image
+                            src={urlFor(product.images[0]).url()}
+                            alt="ProductImage"
+                            width={700}
+                            height={700}
+                            unoptimized
+                            priority
+                            className={`w-full h-64 object-contain overflow-hidden transition-transform bg-shop_light_bg duration-500 
                         ${product?.stock !== 0 ? "group-hover:scale-105" : "opacity-50"}`}
-                    />
+                        />
+                    </Link>
                 )}
 
                 <AddToWishListButton product={product} />
