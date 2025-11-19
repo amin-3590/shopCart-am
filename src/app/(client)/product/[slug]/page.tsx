@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import AddToCardButton from "@/components/AddToCardButton";
 import Container from "@/components/Container";
 import FavoriteButton from "@/components/FavoriteButton";
@@ -12,9 +15,9 @@ import { FiShare2 } from "react-icons/fi";
 import { RxBorderSplit } from "react-icons/rx";
 import { TbTruckDelivery } from "react-icons/tb";
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Page({ params }: { params: { slug: string } }) {
 
-    const { slug } = await params;
+    const slug = params.slug;
     const product = await getProductBySlug(slug);
 
     if (!product) {

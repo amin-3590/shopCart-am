@@ -1,7 +1,13 @@
 import { client } from "./client";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function sanityFetch({ query, params = {} }: { query: string; params?: any }) {
+export async function sanityFetch({
+    query,
+    params = {},
+}: {
+    query: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    params?: any;
+}) {
     try {
         const data = await client.fetch(query, params);
         return { data };

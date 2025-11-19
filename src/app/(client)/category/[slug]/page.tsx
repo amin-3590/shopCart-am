@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import CategoryProducts from "@/components/CategoryProducts";
 import Container from "@/components/Container";
 import { Title } from "@/components/ui/text";
@@ -6,10 +9,10 @@ import { getCategories } from "@/sanity/queries";
 export default async function CategoryPage({
     params
 }: {
-    params: Promise<{ slug: string }>;
+    params: { slug: string };
 }) {
     const categories = await getCategories();
-    const { slug } = await params;
+    const slug = params.slug;
 
     return (
         <div className="py-10">
