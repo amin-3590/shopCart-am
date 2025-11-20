@@ -23,6 +23,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { client } from "@/sanity/lib/client";
+import { createCheckoutSession, Metadata } from "@/actions/createCheckoutSession";
 
 export default function CartPage() {
 
@@ -59,7 +60,7 @@ export default function CartPage() {
 
             } catch (error) {
                 console.log("Addresses fetching error:", error);
-                
+
             } finally {
                 setLoading(false);
             }
@@ -67,6 +68,30 @@ export default function CartPage() {
         fetchAddresses()
 
     }, [])
+
+
+    const handleCheckout = async () => {
+        setLoading(true);
+        try {
+            const metadata: Metadata = {
+                orderNumber: crypto.randomUUID(),
+                customerName: user?.fullName ?? "Unknown",
+                customerEmail: user?.emailAddresses[0]?.emailAddress ?? "Unknown",
+                clerkUserId: user?.id,
+                address: selectedAddress,
+            };
+
+            const checkoutUrl = await createCheckoutSession(groupedItems, metadata);
+            if (checkoutUrl) {
+                window.location.href = checkoutUrl;
+            }
+
+        } catch (error) {
+            console.error("Error creating checkout session:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="bg-gray-50 pb-52 md:pb-10">
@@ -187,6 +212,7 @@ export default function CartPage() {
                                                     className="w-full rounded-full font-semibold tracking-wide transition-all duration-300 ease-in-out"
                                                     size="lg"
                                                     disabled={loading}
+                                                    onClick={handleCheckout}
                                                 >
                                                     {loading ? "Please wait..." : "Proceed to Checkout"}
                                                 </Button>
@@ -248,6 +274,7 @@ export default function CartPage() {
                                                 className="w-full rounded-full font-semibold tracking-wide transition-all duration-300 ease-in-out"
                                                 size="lg"
                                                 disabled={loading}
+                                                onClick={handleCheckout}
                                             >
                                                 {loading ? "Please wait..." : "Proceed to Checkout"}
                                             </Button>

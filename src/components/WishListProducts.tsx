@@ -127,7 +127,7 @@ export default function WishListProducts() {
                     </div>
 
                     {favoriteProduct.length > 0 && (
-                        <Button onClick={handleResetWishlist} className="mb-5 font-semibold" variant="destructive" size="lg">
+                        <Button onClick={handleResetWishlist} className="my-5 font-semibold" variant="destructive" size="lg">
                             Reset Wishlist
                         </Button>
                     )}
