@@ -143,9 +143,10 @@ async function updateStockLevels(stockUpdates: { productId: string; quantity: nu
 
             // Update stock in Sanity
             await backendClient.patch(productId).set({ stock: newStock }).commit();
-            
+
         } catch (error) {
             console.error(`Failed to update stock for product ${productId}:`, error);
         }
     }
 }
+
