@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { useEffect } from "react";
-import useStore from "../../../../store";
 import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect } from "react";
 import { motion } from "motion/react";
 import { Check, Home, Package, ShoppingBag } from "lucide-react";
 import Link from "next/link";
+import useStore from "../../../../store";
 
-export default function SuccessPage() {
+const SuccessPageContent = () => {
 
     const { resetCart } = useStore();
     const searchParams = useSearchParams();
@@ -39,7 +39,6 @@ export default function SuccessPage() {
                 <h1 className="text-3xl font-bold text-gray-900 mb-4">
                     Order Confirmed!
                 </h1>
-
                 <div className="space-y-4 mb-4 text-left">
                     <p className="text-gray-700">
                         Thank you for your purchase. We&apos;re processing your order and
@@ -51,17 +50,25 @@ export default function SuccessPage() {
                         <span className="text-black font-semibold">{orderNumber}</span>
                     </p>
                 </div>
-
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <Link href="/" className="flex items-center justify-center px-4 py-3 font-semibold bg-black text-white rounded-lg hover:bg-gray-800 transition-all duration-300 shadow-md">
+                    <Link
+                        href="/"
+                        className="flex items-center justify-center px-4 py-3 font-semibold bg-black text-white rounded-lg hover:bg-gray-800 transition-all duration-300 shadow-md"
+                    >
                         <Home className="w-5 h-5 mr-2" />
                         Home
                     </Link>
-                    <Link href="/orders" className="flex items-center justify-center px-4 py-3 font-semibold bg-lightGreen text-black border border-lightGreen rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-md" >
+                    <Link
+                        href="/orders"
+                        className="flex items-center justify-center px-4 py-3 font-semibold bg-lightGreen text-black border border-lightGreen rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-md"
+                    >
                         <Package className="w-5 h-5 mr-2" />
                         Orders
                     </Link>
-                    <Link href="/" className="flex items-center justify-center px-4 py-3 font-semibold bg-black text-white rounded-lg hover:bg-gray-800 transition-all duration-300 shadow-md" >
+                    <Link
+                        href="/"
+                        className="flex items-center justify-center px-4 py-3 font-semibold bg-black text-white rounded-lg hover:bg-gray-800 transition-all duration-300 shadow-md"
+                    >
                         <ShoppingBag className="w-5 h-5 mr-2" />
                         Shop
                     </Link>
@@ -69,4 +76,14 @@ export default function SuccessPage() {
             </motion.div>
         </div>
     );
-}
+};
+
+const SuccessPage = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <SuccessPageContent />
+        </Suspense>
+    );
+};
+
+export default SuccessPage;
