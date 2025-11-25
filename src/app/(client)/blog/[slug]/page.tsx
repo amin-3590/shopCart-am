@@ -10,9 +10,9 @@ import { notFound } from "next/navigation";
 import { Blog, Blogcategory, SINGLE_BLOG_QUERYResult } from "../../../../../sanity.types";
 import { getBlogCategories, getOthersBlog, getSingleBlog } from "@/sanity/queries";
 
-export default async function SingleBlogPage({ params }: { params: { slug: string } }) {
+export default async function SingleBlogPage({ params }: { params: Promise<{ slug: string }> }) {
 
-    const slug = params.slug;
+    const { slug } = await params;
     const blog: SINGLE_BLOG_QUERYResult = await getSingleBlog(slug);
     if (!blog) return notFound();
 
@@ -184,7 +184,7 @@ export default async function SingleBlogPage({ params }: { params: { slug: strin
 }
 
 const BlogLeft = async ({ slug }: { slug: string }) => {
-    const categories = await getBlogCategories();
+    const categories = await getBlogCategories() as Blogcategory[];
     const blogs = await getOthersBlog(slug, 5);
 
     return (
