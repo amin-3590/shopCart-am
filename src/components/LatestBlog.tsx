@@ -47,7 +47,7 @@ export default async function LatestBlog() {
 
                             </div>
                             <Link
-                                href={`/blog/${blog?.slug?.current}`}
+                                href={`/blog/${blog.slug?.current}`}
                                 className="text-base font-semibold tracking-wide mt-5 line-clamp-2 hover:text-shop_dark_green transition-all duration-300 ease-in-out"
                             >
                                 {blog.title}
