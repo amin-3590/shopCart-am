@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "typegen": "npx sanity schema extract && npx sanity typegen generate"
@@ -26,7 +26,7 @@
     "dayjs": "^1.11.19",
     "lucide-react": "^0.545.0",
     "motion": "^12.23.24",
-    "next": "^16.0.4",
+    "next": "^15.2.3",
     "next-sanity": "^11.6.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
